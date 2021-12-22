@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="../common/react.development.js"></script>
+    <script src="../common/react-dom.development.js"></script>
+    <script src="../common/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component{
+            
+            state={isHot:false};
+                
+            showLeftData = ()=>{
+                let {input1}=this
+                alert(input1.value);
+            }
+            showRighData = ()=>{
+                let {input2}=this.refs;
+                alert(input2.value);
+            }
+            changeWeather = ()=>{
+                const {isHot}=this.state;
+                this.setState({isHot:!isHot})
+            }
+            saveInput = (c)=>{
+                this.input1=c
+            }
+            render(){
+                const {isHot}=this.state;
+                return (
+                    <div>
+                        <h2>{isHot ? "hot" : "cold"}</h2>
+                        {/*input ref={c => this.input1 = c} type="text" placeholder="click me input data"/>*/}
+                        <input ref={this.saveInput} type="text" placeholder="click me input data"/>
+                        <button onClick={this.changeWeather}>change weather</button>{/*observe function times*/}
+                        <button ref="button" onClick={this.showLeftData}>click me alert left data</button>
+                        <input ref="input2" onBlur={this.showRighData} type="text" placeholder="lose blur alert data"/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById("app"));
+    </script>
+</body>
+</html>

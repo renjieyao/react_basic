@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="app2"></div>
+
+    <script src="../common/react.development.js"></script>
+    <script src="../common/react-dom.development.js"></script>
+    <script src="../common/babel.min.js"></script>
+    <script src="../common/prop-types.js"></script>
+
+    <script type="text/babel">
+        class Person extends React.Component{
+            static propTypes={
+                name:PropTypes.string.isRequired,
+                age:PropTypes.number,
+                sex:PropTypes.string,
+                speak:PropTypes.func,
+            }
+            static defaultProps={
+                sex:"female"
+            }
+            render(){
+                const{name,age,sex}=this.props;//props是只读的
+                return (
+                    <ul>
+                        <li>姓名：{name}</li>
+                        <li>性别：{age}</li>
+                        <li>年龄：{sex}</li>
+                    </ul>
+                )
+            }
+        }
+        // 对标签属性进行限制和设置默认值
+        // Person.propTypes={
+        //     name:PropTypes.string.isRequired,
+        //     age:PropTypes.number,
+        //     sex:PropTypes.string,
+        //     speak:PropTypes.func,
+        // }
+        // Person.defaultProps={
+        //     sex:"female"
+        // }
+        const p={name:"jerry",age:22,sex:"female"};
+        ReactDOM.render(<Person name="tom" age="18" sex="male" speak={speak}/>,document.getElementById("app"));
+        ReactDOM.render(<Person {...p}/>,document.getElementById("app2"));//...p为react提供，仅可在标签中使用
+        function speak(){
+            console.log("hello world")
+        }
+    </script>
+</body>
+</html>

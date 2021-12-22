@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="test"></div>
+
+    <script src="../common/react.development.js"></script>
+    <script src="../common/react-dom.development.js"></script>
+    <script src="../common/babel.min.js"></script>
+    <script src="../common/prop-types.js"></script>
+
+    <script type="text/babel">
+      class Demo extends React.Component {
+        
+        state = { isHot: false };
+
+        static propTypes = {
+            name : PropTypes.string
+        } 
+
+        static defaultProps = {
+            sex : "female"
+        }
+
+        clickTest = () => {
+          const { isHot } = this.state;
+          this.setState({ isHot: !isHot });
+        };
+
+        render() {
+          const { isHot } = this.state;
+          const {name}=this.props;
+          return (
+            <div>
+              <button onClick={this.clickTest}>click</button>
+              <h2>{isHot ? "cold" : "hot"}</h2>
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(<Demo name="tom" />, document.getElementById("test"));
+    </script>
+  </body>
+</html>

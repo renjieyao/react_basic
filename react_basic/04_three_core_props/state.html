@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="../common/react.development.js"></script>
+    <script src="../common/react-dom.development.js"></script>
+    <script src="../common/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Wheather extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={isHot:false};
+                // this.changeWheather=this.changeWheather.bind(this);
+            }
+            render(){
+                const isHot=this.state.isHot;
+                return <h1 onClick={this.changeWheather}>Today is {isHot ? "hot" : "cold"}</h1>
+            }
+            changeWheather=()=>{
+                const isHot=this.state.isHot;
+                this.setState({isHot:!isHot});
+            }
+        }
+        ReactDOM.render(<Wheather/>,document.getElementById("app"));
+    </script>
+</body>
+</html>

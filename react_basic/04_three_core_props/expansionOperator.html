@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 展开运算符用法
+        // 1.剩余参数
+        function sum(...numbers){
+            return numbers.reduce((preValue,curValue)=>{
+                return preValue + curValue;
+            })
+        }
+        // 2.展开数组
+        // 3.构造字面量对象时使用展开语法
+        let person = {name:1,value:2};
+        // 4.修改合并
+        let person2 = {...person,name:3,addr:"shanghai"};
+    </script>
+</body>
+</html>
