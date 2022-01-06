@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="../common/react.development.js"></script>
+    <script src="../common/react-dom.development.js"></script>
+    <script src="../common/babel.min.js"></script>
+    <script src="../common/prop-types.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            constructor(){
+                console.log("constructor");
+                super();
+                this.state = {count};
+            }
+
+            add = () => {
+                const {count} = this.state;
+                count +=1;
+                this.setState({count});
+            }
+
+            componentWillMount(){
+                console.log('componentWillMount');
+            }
+
+            componentDidMount(){
+                console.log('componentDidMount');
+            }
+
+            render() {
+                const {count} = this.state;
+                return (
+                <div>
+                    <h3>sum value:{count}</h3>
+                    <button onClick = {this.add}>click me to +1</button>
+                </div>
+                ) ;
+            }
+
+            componentWillUnmount(){
+                console.log('componentWillUnmount');
+            };
+        }
+        ReactDOM.render(<Demo />, document.getElementById("app"));
+    </script>
+</body>
+</html>

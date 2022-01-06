@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="../common/react.development.js"></script>
+    <script src="../common/react-dom.development.js"></script>
+    <script src="../common/babel.min.js"></script>
+    <script src="../common/prop-types.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            constructor(){
+                console.log("constructor");
+                super();
+                this.state = {count:0};
+            }
+
+            add = () => {
+                let {count} = this.state;
+                count +=1;
+                this.setState({count});
+            }
+
+            lifecycleEnd = () =>{
+                ReactDOM.unmountComponentAtNode(document.getElementById("app"))
+            }
+
+            myForceUpdate = () => {
+                console.log('myForceUpdate');
+                this.forceUpdate();
+            }
+
+            componentWillMount(){
+                console.log('componentWillMount');
+            }
+
+            componentDidMount(){
+                console.log('componentDidMount');
+            }
+
+            // control component update
+            shouldComponentUpdate(){
+                console.log('shouldComponentUpdate');
+                return false;
+            }
+            
+            componentWillUpdate(){
+                console.log('componentWillUpdate')
+            }
+
+            componentDidUpdate(){
+                console.log('componentDidUpdate')
+            }
+
+            render() {
+                console.log('render');
+                const {count} = this.state;
+                return (
+                <div>
+                    <h3>sum value:{count}</h3>
+                    <button onClick = {this.add}>click me to +1</button>
+                    <br/>
+                    <button onClick = {this.lifecycleEnd}>click me to unmout</button>
+                    <br/>
+                    <button onClick = {this.myForceUpdate}>click me to forceUpdate</button>
+                </div>
+                ) ;
+            }
+
+            componentWillUnmount(){
+                console.log('componentWillUnmount');
+            };
+        }
+        
+        class Parent extends React.Component{
+            state = {carName: 'auto'};
+
+            changeCar = () => {
+                // const {carName} = this.state;
+                this.setState({carName:'Bench C63'})
+            }
+
+            render(){
+                const {carName} = this.state;
+                return (
+                    <div>
+                        <h3>my DreamCar is:{carName}</h3>
+                        <button onClick = {this.changeCar}>changeCar</button>
+                        <Child carName = {carName}/>
+                    </div>
+                )
+            }
+        }
+        class Child extends React.Component{
+            constructor(props){
+                super();
+                this.props = props;
+            }
+
+            componentWillReceiveProps(){
+                console.log('componentWillReceiveProps');
+            }
+
+            render(){
+                const {carName} = this.props;
+                return <div>
+                    <h2>I am child,my car is {carName}</h2>
+                </div>
+            }
+        }
+        ReactDOM.render(<Parent />, document.getElementById("app"));
+    </script>
+</body>
+</html>
