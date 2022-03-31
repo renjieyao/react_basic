@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            height:100px;
+            width: 30px;
+        }
+        div>div{
+            flex:1;
+            margin-bottom: 10px;
+            background-color:#f1f1f1;
+            width:20px;
+            height:20px;
+            border-radius:50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="red"></div>
+        <div id="yellow"></div>
+        <div id="green"></div>
+    </div>
+
+    <script>
+        function lightOff(){
+            let lights = document.querySelectorAll(".container>div");
+            for(let i=0;i<3;i++){
+                lights[i].style.backgroundColor = "#f1f1f1";
+            }
+        }
+        function lightOn(name){
+            lightOff();
+            document.getElementById(name).style.backgroundColor = name;
+        }
+        function sleep(t){
+            return new Promise((resolve,reject)=>{
+                setTimeout(resolve,t)
+            })
+        }
+        async function go(){
+            while(true){
+                lightOn("red")
+                await sleep(3000);
+                lightOn("yellow");
+                await sleep(2000);
+                lightOn("green");
+                await sleep(5000);
+            }
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!--
+ * @Description: 
+ * @Date: 2022-03-20 20:22:13
+ * @LastEditTime: 2022-03-20 21:07:41
+ * @LastEditors: Please set LastEditors
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function KMP(source,pattern){
+            // compute table
+            let table = new Array(pattern.length).fill(0);
+            {
+                // a b c d a b c e
+                // 0 0 0 0 0 1 2 3
+                // a b a b a b c
+                // 0 0 0 1 2 3 4
+                let i = 1,j = 0;
+                while(i < pattern.length){
+                    if(pattern[i] === pattern[j]){
+                        ++i,++j;
+                        table[i] = j;
+                    }else{
+                        if(j>0)
+                            j = table[j];
+                        else
+                            ++i;
+                    }
+                }
+            }
+            // search
+            {
+                let i = 0,j = 0;
+                while(i < source.length){
+                    if(pattern[j] === source[i]){
+                        ++i,++j;
+                    }else{
+                        if(j>0)
+                            j = table[j];
+                        else
+                            ++i;
+                    }
+                    if(j === pattern.length)
+                        return true;
+                }
+            }
+            return false;
+        }
+        console.log(KMP("aabaac","aac"));
+    </script>
+</body>
+</html>

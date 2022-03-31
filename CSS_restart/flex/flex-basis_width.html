@@ -1,0 +1,43 @@
+<!--
+ * @Description: 
+ * @Date: 2022-03-18 15:26:33
+ * @LastEditTime: 2022-03-18 15:35:56
+ * @LastEditors: Please set LastEditors
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #container{
+            display:flex;
+        }
+        .flex-basis{
+            padding:1em;
+            border:1em solid deepskyblue;
+            color:deepskyblue;
+            /* 设置flex-basis元素的最小尺寸是最小内容宽度 */
+            flex-basis:100px;
+            box-sizing: border-box;
+            /* 文字超过最小尺寸之后会撑开 */
+            /* word-break: break-all; */
+        }
+        .width{
+            padding:1em;
+            border:1em solid deepskyblue;
+            color:deepskyblue;
+            width:100px;
+            box-sizing: border-box;
+        }
+    </style>
+    <div id="container">
+        <div class="width">我设置了width100px,同时box-sizing: border-box;</div>
+        <div class="flex-basis">我设置了flex-basis100px,同时box-sizing: border-box;</div>
+    </div>
+</body>
+</html>

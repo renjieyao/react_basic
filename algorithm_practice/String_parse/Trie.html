@@ -1,0 +1,65 @@
+<!--
+ * @Description: 
+ * @Date: 2022-03-19 21:11:03
+ * @LastEditTime: 2022-03-20 20:20:42
+ * @LastEditors: Please set LastEditors
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let $ = Symbol("$");
+        class Trie{
+            constructor(){
+                this.root = Object.create(null);
+            }
+            insert(word){
+                let node = this.root;
+                for(let c of word){
+                    if(!node[c])
+                        node[c] = Object.create(null);
+                    node = node[c];
+                }
+                if(!($ in node))
+                    node[$] = 0;
+                node[$] ++ ;
+            }
+            most(){
+                let max = 0;
+                let maxWord = null;
+                let visit = (node,word) =>{
+                    if(node[$] && node[$] > max){
+                        max = node[$];
+                        maxWord = word;
+                    }
+                    for(let p in node){
+                        visit(node[p],word+p);
+                    }
+                }
+                visit(this.root,"");
+                console.log(maxWord,max);
+            }
+        }
+
+        function randomWord(length){
+            // 根据length生成字符串
+            var s = "";
+            for(let i=0;i<length;i++){
+                s += String.fromCharCode(Math.random()*26 + "a".charCodeAt(0));
+            }
+            return s;
+        }
+        let trie = new Trie();
+
+        for(let i = 0;i < 10000; i++){
+            trie.insert(randomWord(4));
+        }
+    </script>
+</body>
+</html>

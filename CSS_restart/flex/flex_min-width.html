@@ -1,0 +1,45 @@
+<!--
+ * @Description: 
+ * @Date: 2022-03-18 19:33:33
+ * @LastEditTime: 2022-03-19 11:09:45
+ * @LastEditors: Please set LastEditors
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #container{
+            display: flex;
+        }
+        #container item{
+            box-shadow: 0 0 0 1px deepskyblue;
+            font-size:20px;
+            font-family: "Microsoft YaHei";
+            /* 最小尺寸width,最小内容宽度136.583px,基础尺寸100px */
+        }
+        #container item:nth-child(1){
+            width:160px;
+            flex-basis:100px;
+        }
+        #container item:nth-child(2){
+            width:120px;
+            flex-basis:100px;
+        }
+        #container item:nth-child(3){
+            width:80px;
+            flex-basis:100px;
+        }
+    </style>
+    <div id="container">
+        <item>设置了width：160px,同时设置了flex-basis：100px</item>
+        <item>设置了width：120px,同时设置了flex-basis：100px</item>
+        <item>设置了width：80px,同时设置了flex-basis：100px</item>
+    </div>
+</body>
+</html>

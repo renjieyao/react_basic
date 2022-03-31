@@ -1,43 +1,87 @@
-/*base*/
-body {
-  background: #fff;
+body{
+    background-color:#fbfbfb;
+    font-family: sans-serif;
 }
 
-.btn {
-  display: inline-block;
-  padding: 4px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
+.wrapper{
+    width:500px;
+    margin:10px auto;
+    padding:20px;
+    background-color: #fff;
 }
 
-.btn-danger {
-  color: #fff;
-  background-color: #da4f49;
-  border: 1px solid #bd362f;
+/* CompInput */
+.comment-input{
+    padding:20px;
+    border:1px solid #ececec;
+    border-radius:5px;
 }
 
-.btn-danger:hover {
-  color: #fff;
-  background-color: #bd362f;
+.comment-field{
+    display: flex;
+    margin-bottom:20px;
 }
 
-.btn:focus {
-  outline: none;
+.comment-field input,.comment-field textarea{
+    outline:none;
+    border:1px solid #f1f1f1;
+    flex: 1;
+    padding:5px;
+    resize:none;
+    border-radius: 5px;
 }
 
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
+.comment-field textarea{
+    height:100px;
 }
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+
+.comment-field-name{
+    flex-basis:100px;
+    display:flex;
+}
+
+.comment-field-input{
+    display:flex;
+    flex:1;
+}
+
+.comment-field-button{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.comment-field-button>button{
+    background-color:#35a3d1;
+    color:white;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    width:100px;
+    border-radius:5px;
+}
+
+.comment-field-button>button:active{
+    background: #13c1f1;
+}
+
+/* 评论组件样式 */
+.comment {
+    display: flex;
+    border-bottom: 1px solid #f1f1f1;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    min-height: 50px;
+}
+
+.comment .comment-username{
+    flex-shrink: 0;
+}
+
+.comment div {
+    color: #00a3cf;
+    font-style: italic;
+}
+
+.comment p{
+    margin: 0;
 }

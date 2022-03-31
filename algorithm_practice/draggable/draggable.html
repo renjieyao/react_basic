@@ -1,0 +1,72 @@
+<!--
+ * @Description: 
+ * @Date: 2022-03-22 15:42:21
+ * @LastEditTime: 2022-03-22 18:01:45
+ * @LastEditors: Please set LastEditors
+ * @Reference: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld helloworld 
+    </div>
+    <div id="draggable" style="display:inline-block;width: 100px;height: 100px;background-color: pink;"></div>
+
+    <script>
+        let draggable = document.getElementById("draggable");
+
+        let baseX = 0,baseY = 0;
+
+        draggable.addEventListener("mousedown",event => {
+            let startX = event.clientX,startY = event.clientY;
+            
+            let up = event => {
+                baseX = baseX + event.clientX - startX;
+                baseY = baseY + event.clientY - startY;
+                document.removeEventListener("mousemove",move);
+                document.removeEventListener("mouseup",up);
+            }
+            let move = event => {
+                // draggable.style.transform = `translate(${baseX + event.clientX - startX}px,${baseY + event.clientY - startY}px)`
+                let range = getNearst(event.clientX,event.clientY);
+                range.insertNode(draggable);
+            }
+            document.addEventListener("mousemove",move);
+            document.addEventListener("mouseup",up);
+        })
+
+        let ranges = [];
+        let container = document.getElementById("container");
+        for(let i = 0;i < container.childNodes[0].textContent.length;i++){
+            let range = document.createRange();
+
+            range.setStart(container.childNodes[0],i);
+            range.setEnd(container.childNodes[0],i);
+
+            ranges.push(range)
+        }
+
+        function getNearst(x,y){
+            let min = Infinity;
+            let nearst = null;
+
+            for(let range of ranges){
+                let rect = range.getBoundingClientRect();
+                let distance = (rect.x - x) ** 2 + (rect.y - y) ** 2;
+                if(distance < min){
+                    min = distance;
+                    nearst = range;
+                }
+            }
+            return nearst;
+        }
+        document.addEventListener("selectstart",e => e.preventDefault())
+    </script>
+</body>
+</html>
